@@ -1,0 +1,45 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!doctype html>
+<html class="scroll-smooth" lang="pt-br">
+    <head>
+        <title>{% block 'title' %}{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+        {% tailwind_css %}
+        {% block 'head' %}{% endblock %}
+        <!-- AlpineJS -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+        <style>
+            * {
+                font-family: "Inter", sans-serif;
+            }
+            [x-cloak] {
+                display: none !important;
+            }
+            ::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 8px;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #9CA3AF;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+    <body x-data="alpine">
+        {% block 'body' %}{% endblock %}
+        {% block 'script' %}{% endblock %}
+        {% block 'extra' %}{% endblock %}
+    </body>
+</html>

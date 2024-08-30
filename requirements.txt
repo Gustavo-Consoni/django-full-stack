@@ -1,0 +1,8 @@
+# Django==4.2.*
+# django-tailwind
+# djangorestframework
+# djangorestframework-simplejwt
+# django-cors-headers
+# python-decouple
+# stripe
+# pillow
