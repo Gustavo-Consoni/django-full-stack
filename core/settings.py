@@ -1,5 +1,6 @@
+import stripe
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -14,14 +15,15 @@ SECRET_KEY = 'django-insecure-t38)h(crg957%te_bj!+y$=7*b*cbu95dxi*wvi)rsdb-eojnq
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,8 +120,6 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
-
 
 # Static files (CSS, JavaScript, Images)
 
@@ -182,3 +182,5 @@ STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 
 STRIPE_WEBHOOK_KEY = config('STRIPE_WEBHOOK_KEY')
+
+stripe.api_key = STRIPE_SECRET_KEY

@@ -40,7 +40,6 @@ class Login(View):
         else:
             messages.error(request, 'Ative sua conta pelo email')
             return redirect('login')
-            
 
 
 class Register(View):
@@ -93,7 +92,7 @@ class ActiveAccount(View):
             user.save()
             messages.success(request, 'Conta ativada')
         else:
-            messages.error(request, 'Codigo de ativação invalido')
+            messages.error(request, 'Codigo de ativação inválido')
         return redirect('login')
 
 

@@ -7,9 +7,6 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-
 class StripeCheckout(View):
 
     def post(self, request):
@@ -46,8 +43,8 @@ class StripeCheckout(View):
                 'products_id': products_id,
             },
             mode='payment',
-            success_url=request.build_absolute_uri(reverse('Home')),
-            cancel_url=request.build_absolute_uri(reverse('Home')),
+            success_url=request.build_absolute_uri(reverse('home')),
+            cancel_url=request.build_absolute_uri(reverse('home')),
         )
 
         return JsonResponse({'id': checkout_session.id})

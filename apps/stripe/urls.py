@@ -3,6 +3,6 @@ from apps.stripe import views
 
 
 urlpatterns = [
-    path('stripe_checkout', views.StripeCheckout.as_view(), name='stripe_checkout'),
-    path('stripe_webhook', views.StripeWebhook.as_view(), name='stripe_webhook'),
+    path('stripe-checkout', views.StripeCheckout.as_view(), name='stripe_checkout'),
+    path('stripe-webhook', views.StripeWebhook.as_view(), name='stripe_webhook'),
 ]

@@ -2,7 +2,9 @@
 # django-tailwind
 # djangorestframework
 # djangorestframework-simplejwt
+# djangorestframework-api-key
 # django-cors-headers
+# django-jazzmin
 # python-decouple
 # stripe
 # pillow
