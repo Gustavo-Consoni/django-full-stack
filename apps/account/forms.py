@@ -15,6 +15,6 @@ class UserCreationForm(auth_forms.UserCreationForm):
         model = User
 
 
-class AuthForm(forms.Form):
+class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(min_length=8)
