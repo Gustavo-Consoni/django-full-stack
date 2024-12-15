@@ -40,6 +40,7 @@
     <body x-data="alpine">
         {% block 'body' %}{% endblock %}
         {% block 'script' %}{% endblock %}
-        {% block 'extra' %}{% endblock %}
+        {% block 'components' %}{% endblock %}
+        {% include 'components/message.html' %}
     </body>
 </html>

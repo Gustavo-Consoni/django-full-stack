@@ -36,7 +36,8 @@ class Login(View):
         
         if user.is_active:
             login(request, user)
-            return redirect("home")
+            next_url = request.GET.get("next")
+            return redirect(next_url if next_url else "home")
         else:
             messages.error(request, "Ative sua conta pelo email")
             return redirect("login")
