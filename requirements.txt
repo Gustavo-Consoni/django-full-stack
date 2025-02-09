@@ -1,10 +1,11 @@
-# Django==4.2.*
-# django-tailwind
-# djangorestframework
-# djangorestframework-simplejwt
-# djangorestframework-api-key
-# django-cors-headers
-# django-jazzmin
-# python-decouple
-# stripe
-# pillow
+Django==4.2.*
+django-tailwind-cli
+djangorestframework
+djangorestframework-simplejwt
+djangorestframework-api-key
+django-cors-headers
+django-unfold
+django-cotton
+python-decouple
+pillow
+stripe

@@ -1,10 +1,8 @@
+.env
 venv/
-db.sqlite3
 media/
+staticfiles/
+db.sqlite3
 __pycache__/
 **/migrations/*
 !**/migrations/__init__.py
-node_modules/
-.env
-library.txt
-theme/

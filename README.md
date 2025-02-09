@@ -2,9 +2,6 @@
 - venv/scripts/activate
 - python.exe -m pip install --upgrade pip
 - pip install -r requirements.txt
-- python manage.py tailwind init
-- python manage.py tailwind install
 - python manage.py makemigrations
 - python manage.py migrate
-- python manage.py tailwind start
-- python manage.py runserver
+- python manage.py tailwind runserver

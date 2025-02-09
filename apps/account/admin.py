@@ -1,15 +1,25 @@
+from unfold.admin import ModelAdmin
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 from django.contrib import admin
-from django.contrib.auth import admin as auth_admin
+from django.contrib.auth.models import Group
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from apps.account.models import User
-from apps.account.forms import UserChangeForm, UserCreationForm
 
 
 @admin.register(User)
-class UsersAdmin(auth_admin.UserAdmin):
-    list_display = ["email", "first_name", "last_name", "is_staff"]
+class UsersAdmin(BaseUserAdmin, ModelAdmin):
+    model = User
     form = UserChangeForm
     add_form = UserCreationForm
-    model = User
+    change_password_form = AdminPasswordChangeForm
+    list_display = ["email", "first_name", "last_name", "is_staff"]
 
     def get_list_display_links(self, request, list_display):
         return ["email"]
+
+
+admin.site.unregister(Group)
+@admin.register(Group)
+class GroupAdmin(BaseGroupAdmin, ModelAdmin):
+    pass

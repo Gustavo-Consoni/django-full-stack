@@ -23,7 +23,8 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-    "jazzmin",
+    "unfold",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -32,8 +33,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
-    "tailwind",
-    "theme",
+    "django_cotton",
+    "django_tailwind_cli",
 
     "apps.home",
     "apps.account",
@@ -127,7 +128,7 @@ STATIC_URL = "static/"
 
 STATIC_ROOT = BASE_DIR / "static/"
 
-STATICFILES_DIRS = [BASE_DIR / "theme/static/"]
+STATICFILES_DIRS = [BASE_DIR / "staticfiles/"]
 
 MEDIA_URL = "media/"
 
@@ -137,15 +138,6 @@ MEDIA_ROOT = BASE_DIR / "media/"
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# TailwindCSS
-
-TAILWIND_APP_NAME = "theme"
-
-INTERNAL_IPS = ["127.0.0.1"]
-
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 
 # User Model
@@ -188,9 +180,6 @@ STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
 stripe.api_key = STRIPE_SECRET_KEY
 
 
-# Jazzmin
+# Django Cotton
 
-JAZZMIN_SETTINGS = {
-    "welcome_sign": "Seja bem vindo",
-    "site_brand": "Empresa",
-}
+COTTON_DIR = "components"
