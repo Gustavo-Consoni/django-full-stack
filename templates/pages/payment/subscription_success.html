@@ -15,26 +15,14 @@
                     </linearGradient>
                 </defs>
             </svg>
-            <p class="font-medium text-gray-800 text-center tracking-tight">Por favor, insira seu endereço de e-mail no campo abaixo para que possamos enviar um link de redefinição de senha</p>
+            <p class="font-bold text-gray-800 text-2xl text-center tracking-tight">Email de definição enviado</p>
         </div>
 
         <div class="mt-10">
-            <form action="{% url 'password_reset' %}" method="POST">
-                <div class="space-y-2 mt-6">
-                    <label class="font-medium text-gray-800 text-sm" for="email">E-mail</label>
-                    <input class="shadow-sm px-3 py-2 rounded outline-none ring-1 ring-gray-300 focus:ring-indigo-600 ring-inset focus:ring-inset w-full text-gray-800 text-sm duration-300" id="email" name="email" type="email" required>
-                    {% for error in form.errors.email %}
-                    <p class="text-red-500 text-xs">{{ error }}</p>
-                    {% endfor %}
-                </div>
-                <div class="mt-10">
-                    <button class="bg-indigo-600 hover:bg-indigo-500 shadow-sm px-3 py-2 rounded w-full font-semibold text-white text-sm duration-300" type="submit">Enviar</button>
-                </div>
-                {% csrf_token %}
-            </form>
-            <div class="mt-10 text-center">
-                <span class="text-gray-500 text-sm">Já possui cadastro?</span>
-                <a class="font-semibold text-indigo-600 hover:text-indigo-500 text-sm duration-300" href="{% url 'login' %}">Acessar plataforma</a>
+            <p class="font-medium text-gray-500 text-sm">Em breve você receberá um email com instruções para criar a senha da sua conta.</p>
+            <p class="mt-6 font-medium text-gray-500 text-sm">Caso não tenha recebido o email, por favor certifique-se que verificou sua pasta de spam antes de entrar em contato com nossa equipe de suporte.</p>
+            <div class="flex mt-10">
+                <a class="bg-indigo-600 hover:bg-indigo-500 shadow-sm px-3 py-2 rounded w-full font-semibold text-white text-sm text-center duration-300" href="{% url 'login' %}">Continuar</a>
             </div>
         </div>
 

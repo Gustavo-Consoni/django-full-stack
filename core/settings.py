@@ -146,7 +146,7 @@ AUTH_USER_MODEL = "account.User"
 
 AUTHENTICATION_BACKENDS = ["apps.account.backends.CustomBackend"]
 
-SESSION_COOKIE_AGE = 86400
+SESSION_COOKIE_AGE = 60 * 60 * 24
 
 LOGIN_URL = "entrar/"
 

@@ -1,25 +1,25 @@
 {% load static %}
 
-<div class="flex items-center justify-between bg-gray-50 gap-6 pb-8">
+<div class="flex justify-between items-center gap-6 bg-gray-50 pb-8">
 
     <!-- Busca -->
-    <form class="flex items-center w-96 rounded-lg shadow-sm bg-white border" @submit.prevent>
+    <form class="flex items-center bg-white shadow-sm border rounded-lg w-96" @submit.prevent>
         <button class="p-3" type="submit" @click="get_intelligences()">
             <svg class="w-5 h-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
         </button>
-        <input class="w-full text-gray-600 text-sm font-medium placeholder:text-gray-600 placeholder:text-sm placeholder:font-medium outline-none rounded-r-lg py-2" type="text" name="filter" x-model="filter" placeholder="Buscar pelo nome...">
+        <input class="py-2 rounded-r-lg outline-none w-full font-medium placeholder:font-medium text-gray-600 placeholder:text-gray-600 text-sm placeholder:text-sm" type="text" name="filter" x-model="filter" placeholder="Buscar pelo nome...">
     </form>
 
     <!-- Perfil -->
     <div class="flex items-end gap-4">
-        <div class="flex items-center justify-center w-9 h-9 rounded-full bg-indigo-600">
-            <p class="text-white font-bold">G</p>
+        <div class="flex justify-center items-center bg-indigo-600 rounded-full w-9 h-9">
+            <p class="font-bold text-white">G</p>
         </div>
         <div>
-            <p class="text-sm font-semibold">Gustavo Consoni</p>
-            <p class="text-xs font-medium">Administrador</p>
+            <p class="font-semibold text-sm">Gustavo Consoni</p>
+            <p class="font-medium text-xs">Administrador</p>
         </div>
     </div>
 

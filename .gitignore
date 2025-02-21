@@ -1,7 +1,6 @@
 .env
 venv/
 media/
-staticfiles/
 db.sqlite3
 __pycache__/
 **/migrations/*
