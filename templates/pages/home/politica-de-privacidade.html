@@ -1,7 +1,7 @@
-{% extends 'layouts/base.html' %}
+{% extends "layouts/base.html" %}
 
 
-{% block 'body' %}
+{% block "body" %}
 <div class="bg-gray-100">
     <div class="space-y-12 bg-white mx-auto p-12 max-md:px-6 md:w-[80%] xl:w-[60%] text-gray-600">
 
@@ -44,7 +44,7 @@
 {% endblock %}
 
 
-{% block 'script' %}
+{% block "script" %}
 <script>
 document.addEventListener("alpine:init", () => {
     Alpine.data("alpine", () => ({
