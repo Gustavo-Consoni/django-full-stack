@@ -8,7 +8,7 @@ from apps.account.models import User
 
 
 @admin.register(User)
-class UsersAdmin(BaseUserAdmin, ModelAdmin):
+class UserAdmin(BaseUserAdmin, ModelAdmin):
     model = User
     form = UserChangeForm
     add_form = UserCreationForm
