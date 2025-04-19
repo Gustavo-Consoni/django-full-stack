@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
+from django.contrib.auth.models import AbstractUser, UserManager
 
 
-class UserManager(BaseUserManager):
+class CustomUserManager(UserManager):
 
     def _create_user(self, email, password, **extra_fields):
         if not email:
@@ -37,10 +37,12 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = models.CharField(_("username"), max_length=150, blank=True, default="")
     email = models.EmailField(_("email address"), unique=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True, verbose_name="Telefone")
+    date_birth = models.DateField(null=True, blank=True, verbose_name="Data de Nascimento")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-    objects = UserManager()
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.email

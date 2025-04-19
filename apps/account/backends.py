@@ -7,7 +7,9 @@ class CustomBackend(ModelBackend):
         try:
             user = UserModel.objects.get(email__iexact=username)
         except UserModel.DoesNotExist:
-            return
+            return None
 
         if user.check_password(password):
             return user
+        else:
+            return None

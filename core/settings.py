@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django_cotton",
     "django_tailwind_cli",
 
+    "core",
     "apps.home",
     "apps.account",
     "apps.payment",
@@ -149,7 +150,7 @@ AUTHENTICATION_BACKENDS = ["apps.account.backends.CustomBackend"]
 
 SESSION_COOKIE_AGE = 60 * 60 * 24
 
-LOGIN_URL = "entrar/"
+LOGIN_URL = "/entrar"
 
 
 # HTTPS / SSL
