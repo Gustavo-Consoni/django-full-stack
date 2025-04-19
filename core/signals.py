@@ -9,9 +9,8 @@ def verify_dev_superuser(sender, **kwargs):
     if not settings.DEBUG:
         return
 
-    if not User.objects.filter(is_superuser=True).exists():
+    if not User.objects.filter(email="admin@admin.com").exists():
         User.objects.create_superuser(
-            username="admin",
             email="admin@admin.com",
             password="admin123",
         )
