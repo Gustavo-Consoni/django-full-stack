@@ -10,7 +10,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import authenticate, login, logout, views
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from apps.account.models import User
-from apps.account.forms import LoginForm
+from apps.account.forms import LoginForm, RegisterForm
 
 
 class Login(View):
@@ -20,20 +20,19 @@ class Login(View):
             return redirect("home")
 
         return render(request, "pages/account/login.html")
-    
+
     def post(self, request):
         form = LoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get("email")
-            password = form.cleaned_data.get("password")
+            data = form.cleaned_data
         else:
             return render(request, "pages/account/login.html", {"form": form})
-        
-        user = authenticate(request, username=email, password=password)
+
+        user = authenticate(request, username=data["email"], password=data["password"])
         if not user:
             messages.error(request, "Email ou senha incorretos")
             return render(request, "pages/account/login.html")
-        
+
         if user.is_active:
             login(request, user)
             next_url = request.GET.get("next")
@@ -52,21 +51,16 @@ class Register(View):
         return render(request, "pages/account/register.html")
 
     def post(self, request):
-        form = LoginForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get("email")
-            password = form.cleaned_data.get("password")
+            data = form.cleaned_data
         else:
             return render(request, "pages/account/register.html", {"form": form})
 
-        if User.objects.filter(email=email).exists():
-            messages.error(request, "Email já existe")
-            return render(request, "pages/account/register.html")
-
-        user = User.objects.create_user(email=email, password=password, is_active=False)
+        user = User.objects.create_user(email=data["email"], password=data["password"], is_active=False)
 
         current_site = get_current_site(request)
-        mail_subject = "Activate your account."
+        mail_subject = "Ative sua conta"
         message = render_to_string("pages/account/activate_account_email.html", {
             "user": user,
             "protocol": "https" if request.is_secure() else "http",

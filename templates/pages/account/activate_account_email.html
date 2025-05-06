@@ -1,8 +1,8 @@
 {% autoescape off %}
 
-    Olá, {{ user.email }}! Para finalizar o processo de ativação da sua conta, clique no link abaixo:
+    Olá, {{ user.full_name }}! Para finalizar o processo de ativação da sua conta, clique no link abaixo:
 
-    {{ protocol }}://{{ domain }}{% url 'active_account' uidb64=uid token=token %}
+    {{ protocol }}://{{ domain }}{% url "active_account" uidb64=uid token=token %}
 
     Se clicar no link acima não funcionar, copie e cole a URL no navegador.
 

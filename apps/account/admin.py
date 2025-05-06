@@ -14,7 +14,7 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
     change_password_form = AdminPasswordChangeForm
-    list_display = ("email", "first_name", "last_name", "is_staff")
+    list_display = ("email", "first_name", "last_name", "is_active", "is_staff")
     fieldsets = (
         ("Geral", {"fields": ("username", "email", "password")}),
         (_("Personal info"), {"fields": ("first_name", "last_name", "phone_number", "date_birth")}),
