@@ -5,12 +5,6 @@ from apps.account.models import User
 
 
 @receiver(post_migrate)
-def verify_dev_superuser(sender, **kwargs):
-    if not settings.DEBUG:
-        return
-
-    if not User.objects.filter(email="admin@admin.com").exists():
-        User.objects.create_superuser(
-            email="admin@admin.com",
-            password="admin123",
-        )
+def verify_superuser(sender, **kwargs):
+    if settings.DEBUG and not User.objects.filter(email="admin@admin.com").exists():
+        User.objects.create_superuser(email="admin@admin.com", password="admin123")

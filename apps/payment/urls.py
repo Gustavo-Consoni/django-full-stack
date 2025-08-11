@@ -1,10 +1,12 @@
 from django.urls import path
-from apps.payment import views
+from apps.payment import views, api
 
 
 urlpatterns = [
-    path("create-checkout-session/<str:name>", views.CreateCheckoutSession.as_view(), name="create_checkout_session"),
+    path("assinar", views.SubscriptionCheckout.as_view(), name="subscription_checkout"),
     path("assinatura-finalizada", views.SubscriptionSuccess.as_view(), name="subscription_success"),
-    path("gerenciar-assinatura", views.ManageSubscription.as_view(), name="manage_subscription"),
-    path("stripe-webhook", views.StripeWebhook.as_view(), name="stripe_webhook"),
+    path("renovar-assinatura", views.SubscriptionRenew.as_view(), name="subscription_renew"),
+    path("cancelar-assinatura", views.SubscriptionCancel.as_view(), name="subscription_cancel"),
+
+    path("api/asaas-webhook", api.AsaasWebhook.as_view(), name="asaas_webhook"),
 ]

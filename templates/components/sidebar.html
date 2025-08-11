@@ -1,97 +1,20 @@
-{% load static %}
-
-<div class="max-xl:hidden flex flex-col gap-6 p-6 border-r w-72 h-screen" x-data="{ currentPath: '{{ request.path }}' }">
-
-    <div class="px-3">
-        <svg class="size-10" viewBox="0 0 47 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#4f46e5" d="M23.5 6.5C17.5 6.5 13.75 9.5 12.25 15.5C14.5 12.5 17.125 11.375 20.125 12.125C21.8367 12.5529 23.0601 13.7947 24.4142 15.1692C26.6202 17.4084 29.1734 20 34.75 20C40.75 20 44.5 17 46 11C43.75 14 41.125 15.125 38.125 14.375C36.4133 13.9471 35.1899 12.7053 33.8357 11.3308C31.6297 9.09158 29.0766 6.5 23.5 6.5ZM12.25 20C6.25 20 2.5 23 1 29C3.25 26 5.875 24.875 8.875 25.625C10.5867 26.0529 11.8101 27.2947 13.1642 28.6693C15.3702 30.9084 17.9234 33.5 23.5 33.5C29.5 33.5 33.25 30.5 34.75 24.5C32.5 27.5 29.875 28.625 26.875 27.875C25.1633 27.4471 23.9399 26.2053 22.5858 24.8307C20.3798 22.5916 17.8266 20 12.25 20Z"/>
-            <defs>
-                <linearGradient id="%%GRADIENT_ID%%" x1="33.999" x2="1" y1="16.181" y2="16.181"
-                    gradientUnits="userSpaceOnUse">
-                    <stop stop-color="%%GRADIENT_TO%%" />
-                    <stop offset="1" stop-color="%%GRADIENT_FROM%%" />
-                </linearGradient>
-            </defs>
-        </svg>
+<div
+    class="z-50 fixed inset-0 bg-black/50"
+    x-show="{{ variable }}"
+    @click="{{ variable }} = false"
+    x-transition.opacity.duration.500ms
+    x-cloak
+>
+</div>
+<div
+    :class="{ '-translate-x-72 sm:-translate-x-96': {{ variable }} }"
+    class="top-0 -right-72 sm:-right-96 z-50 fixed space-y-6 bg-[#212121] p-6 border border-[#323232] w-72 sm:w-96 h-full duration-500"
+>
+    <div class="flex justify-between items-center">
+        <p class="font-teko font-semibold text-white text-2xl text-center">{{ title }}</p>
+        <button class="cursor-pointer" @click="{{ variable }} = false">
+            <c-icon.x_mark class="size-5 text-white"></c-icon.x_mark>
+        </button>
     </div>
-
-    <div>
-        <p class="p-3 font-medium text-gray-600 text-xs">Navegação</p>
-        <a
-            :class="{ 'text-indigo-600 bg-gray-100 rounded': currentPath == '{% url "DashboardTemplate" %}' }"
-            class="flex items-center gap-3 p-3 text-gray-600 hover:text-indigo-600 duration-500"
-            href="{% url 'DashboardTemplate' %}"
-        >
-            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </svg>
-            <p class="font-medium text-sm">Painel</p>
-        </a>
-        <a 
-            :class="{ 'text-indigo-600 bg-gray-100 rounded': currentPath == '{% url "SchedulingTemplate" %}' }"
-            class="flex items-center gap-3 p-3 text-gray-600 hover:text-indigo-600 duration-500"
-            href="{% url 'SchedulingTemplate' %}"
-        >
-            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
-            </svg>
-            <p class="font-medium text-sm">Agendamentos</p>
-        </a>
-        <a 
-            :class="{ 'text-indigo-600 bg-gray-100 rounded': currentPath == '{% url "EmployeeTemplate" %}' }"
-            class="flex items-center gap-3 p-3 text-gray-600 hover:text-indigo-600 duration-500"
-            href="{% url 'EmployeeTemplate' %}"
-        >
-            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-            </svg>
-            <p class="font-medium text-sm">Funcionários</p>
-        </a>
-        <a 
-            :class="{ 'text-indigo-600 bg-gray-100 rounded': currentPath == '{% url "ServiceTemplate" %}' }"
-            class="flex items-center gap-3 p-3 text-gray-600 hover:text-indigo-600 duration-500"
-            href="{% url 'ServiceTemplate' %}"
-        >
-            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z" />
-            </svg>
-            <p class="font-medium text-sm">Serviços</p>
-        </a>
-    </div>
-
-    <div>
-        <p class="p-3 font-medium text-gray-600 text-xs">Conta</p>
-        <a
-            :class="{}"
-            class="flex items-center gap-3 p-3 text-gray-600 hover:text-indigo-600 duration-500"
-            href=""
-        >
-            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-            </svg>
-            <p class="font-medium text-sm">Notificações</p>
-        </a>
-        <a
-            :class="{}"
-            class="flex items-center gap-3 p-3 text-gray-600 hover:text-indigo-600 duration-500"
-            href=""
-        >
-            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-            </svg>
-            <p class="font-medium text-sm">Configurações</p>
-        </a>
-        <a
-            :class="{ 'text-indigo-600 bg-gray-100 rounded': currentPath == '{% url "Logout" %}' }"
-            class="flex items-center gap-3 p-3 text-gray-600 hover:text-indigo-600 duration-500"
-            href="{% url 'Logout' %}"
-        >
-            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-            </svg>
-            <p class="font-medium text-sm">Sair</p>
-        </a>
-    </div>
-
+    {{ slot }}
 </div>

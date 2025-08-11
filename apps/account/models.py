@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, UserManager
 
 
@@ -35,10 +34,17 @@ class CustomUserManager(UserManager):
 
 
 class User(AbstractUser):
-    username = models.CharField(_("username"), max_length=150, blank=True, default="")
-    email = models.EmailField(_("email address"), unique=True)
-    phone_number = models.CharField(max_length=15, null=True, blank=True, verbose_name="Telefone")
-    date_birth = models.DateField(null=True, blank=True, verbose_name="Data de Nascimento")
+    email          = models.EmailField(unique=True)
+    username       = models.CharField(max_length=50, null=True, blank=True)
+    phone_number   = models.CharField(max_length=15, null=True, blank=True, verbose_name="Telefone")
+    date_birth     = models.DateField(null=True, blank=True, verbose_name="Data de Nascimento")
+    postal_code    = models.CharField(max_length=8, null=True, blank=True, verbose_name="Cep")
+    state          = models.CharField(max_length=2, null=True, blank=True, verbose_name="Estado")
+    city           = models.CharField(max_length=100, null=True, blank=True, verbose_name="Cidade")
+    district       = models.CharField(max_length=100, null=True, blank=True, verbose_name="Bairro")
+    street         = models.CharField(max_length=100, null=True, blank=True, verbose_name="Rua")
+    address_number = models.CharField(max_length=10, null=True, blank=True, verbose_name="Número")
+    complement     = models.CharField(max_length=100, null=True, blank=True, verbose_name="Complemento")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -46,7 +52,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
-
-    @property
-    def full_name(self):
-        return f"{self.first_name} {self.last_name}"
