@@ -77,15 +77,15 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 # Database
 
-if config("DB_HOST"):
+if not DEBUG:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "HOST": config("DB_HOST"),
-            "PORT": config("DB_PORT"),
-            "NAME": config("DB_NAME"),
-            "USER": config("DB_USER"),
-            "PASSWORD": config("DB_PASSWORD"),
+            "HOST": config("POSTGRES_HOST"),
+            "PORT": config("POSTGRES_PORT"),
+            "NAME": config("POSTGRES_DB"),
+            "USER": config("POSTGRES_USER"),
+            "PASSWORD": config("POSTGRES_PASSWORD"),
         }
     }
 else:
@@ -128,15 +128,17 @@ USE_L10N = True
 
 # Static files (CSS, JavaScript, Images)
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
-STATIC_ROOT = BASE_DIR / "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_DIRS = [BASE_DIR / "staticfiles/"]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_URL = "media/"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage" if DEBUG else "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
-MEDIA_ROOT = BASE_DIR / "media/"
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Default primary key field type
@@ -158,10 +160,10 @@ LOGIN_URL = "/entrar"
 # HTTPS / SSL
 
 if not DEBUG:
-	SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+	CSRF_COOKIE_SECURE = True
 	SECURE_SSL_REDIRECT = True
 	SESSION_COOKIE_SECURE = True
-	CSRF_COOKIE_SECURE = True
+	SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # Email
@@ -172,11 +174,13 @@ EMAIL_HOST = config("EMAIL_HOST")
 
 EMAIL_PORT = config("EMAIL_PORT")
 
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_USER = config("EMAIL_USER")
 
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = config("EMAIL_PASSWORD")
 
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
+
+EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
 
 
 # Asaas

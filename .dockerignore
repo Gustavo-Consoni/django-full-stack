@@ -2,7 +2,6 @@
 .env
 venv/
 media/
-static/
 db.sqlite3
 __pycache__/
 .django_tailwind_cli
