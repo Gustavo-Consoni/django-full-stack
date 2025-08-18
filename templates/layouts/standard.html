@@ -44,8 +44,11 @@
         </style>
     </head>
     <body x-data="alpine" id="page">
-        <div class="bg-[length:100%_100vh] bg-gradient-to-b from-[#101010] via-[#212121] to-[#101010] min-h-svh" id="content">
-            {% block "body" %}{% endblock %}
+        <div class="bg-[length:100%_100vh] bg-gradient-to-b from-[#101010] via-[#212121] to-[#101010]" id="content">
+            <div class="space-y-12 mx-auto max-xl:px-6 py-6 max-w-7xl min-h-svh">
+                <c-navbar></c-navbar>
+                {% block "body" %}{% endblock %}
+            </div>
         </div>
         {% block "components" %}{% endblock %}
         {% block "script" %}{% endblock %}

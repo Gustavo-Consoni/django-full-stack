@@ -9,14 +9,15 @@
         <title>SpacePro</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
         <meta property="og:type" content="website">
-        <meta property="og:title" content="SpacePro">
+        <meta property="og:title" content="">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
-        <meta property="og:url" content="https://spaceprobr.com.br">
-        <meta property="og:image" content="https://spaceprobr.com.br{% static 'images/og-image.jpg' %}">
-        <meta property="og:description" content="A melhor plataforma de treino para resultados consistentes">
-        <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
+        <meta property="og:url" content="">
+        <meta property="og:image" content="">
+        <meta property="og:description" content="">
+        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
         <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
         {% block "head" %}{% endblock %}
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
@@ -44,7 +45,7 @@
     </head>
     <body x-data="alpine" id="page">
         <div class="bg-[length:100%_100vh] bg-gradient-to-b from-[#101010] via-[#212121] to-[#101010]" id="content">
-            <div class="flex flex-col justify-center items-center mx-auto max-xl:px-6 py-6 max-w-7xl min-h-dvh">
+            <div class="flex flex-col justify-center items-center mx-auto max-xl:px-6 py-6 max-w-7xl min-h-svh">
                 {% block "body" %}{% endblock %}
             </div>
         </div>
