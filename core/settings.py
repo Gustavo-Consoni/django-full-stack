@@ -196,6 +196,8 @@ ASAAS_API_KEY = config("ASAAS_API_KEY")
 
 ASAAS_ACCESS_TOKEN = config("ASAAS_ACCESS_TOKEN")
 
+ASAAS_BASE_URL = config("ASAAS_BASE_URL")
+
 
 # Django Cotton
 
@@ -205,9 +207,9 @@ COTTON_DIR = "components"
 # Django Debug Toolbar
 
 if DEBUG:
+    INTERNAL_IPS = ["127.0.0.1"]
     INSTALLED_APPS += ["debug_toolbar"]
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
-    INTERNAL_IPS = ["127.0.0.1"]
 
 
 # Django PWA

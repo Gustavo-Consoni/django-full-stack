@@ -7,7 +7,7 @@ class AsaasBase:
 
     def __init__(self):
         self.API_KEY = settings.ASAAS_API_KEY
-        self.BASE_URL = "https://api-sandbox.asaas.com/v3/"
+        self.BASE_URL = settings.ASAAS_BASE_URL
 
     def send_request(self, path, method="GET", query_params={}, body={}):
         url = self.mount_url(path, query_params)
@@ -27,6 +27,7 @@ class AsaasBase:
             case "DELETE":
                 response = requests.delete(url=url, headers=headers)
 
+        response.raise_for_status()
         return response.json()
 
     def mount_url(self, path, query_params={}):
