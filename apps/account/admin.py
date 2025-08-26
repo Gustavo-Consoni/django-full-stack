@@ -9,6 +9,7 @@ from apps.account.models import User
 
 @admin.register(User)
 class UsersAdmin(BaseUserAdmin, ModelAdmin):
+    list_per_page = 20
     model = User
     form = UserChangeForm
     add_form = UserCreationForm
@@ -16,11 +17,11 @@ class UsersAdmin(BaseUserAdmin, ModelAdmin):
     list_display = ["email", "first_name", "last_name", "is_active", "is_staff"]
     fieldsets = (
         ("Conta", {"fields": ("email", "password")}),
-        ("Dados Pessoais", {"fields": ("first_name", "last_name", "phone_number", "date_birth")}),
-        ("Endereço", {"fields": ("postal_code", "state", "city", "district", "street", "address_number", "complement")}),
+        ("Dados Pessoais", {"fields": ("first_name", "last_name", "phone_number", "birth_date")}),
+        ("Endereço", {"fields": ("postal_code", "state", "city", "neighborhood", "street", "address_number", "complement")}),
         ("Permissões", {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),
         ("Datas Importantes", {"fields": ("last_login", "date_joined")}),
-    )
+    )   
     add_fieldsets = (
         (
             None,
@@ -35,4 +36,4 @@ class UsersAdmin(BaseUserAdmin, ModelAdmin):
 admin.site.unregister(Group)
 @admin.register(Group)
 class GroupAdmin(BaseGroupAdmin, ModelAdmin):
-    pass
+    list_per_page = 20

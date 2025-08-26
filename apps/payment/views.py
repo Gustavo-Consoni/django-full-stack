@@ -2,6 +2,7 @@ from django.views import View
 from django.utils import timezone
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.account.models import User
 from apps.payment.forms import SubscriptionCheckoutForm
@@ -32,7 +33,7 @@ class SubscriptionCheckout(View):
             )
         except Exception as e:
             print(e)
-            messages.error(request, "Endereço de cobrança inválido")
+            messages.error(request, "CPF ou CEP inválido")
             return redirect("subscription_checkout")
 
         try:
@@ -72,15 +73,18 @@ class SubscriptionCheckout(View):
             email=data["email"],
             password=data["password"],
             phone_number=data["phone_number"],
-            date_birth=data["date_birth"],
+            birth_date=data["birth_date"],
             postal_code=asaas_customer["postalCode"],
             state=asaas_customer["state"],
             city=asaas_customer["cityName"],
-            district=asaas_customer["province"],
+            neighborhood=asaas_customer["province"],
             street=asaas_customer["address"],
             address_number=asaas_customer["addressNumber"],
             complement=asaas_customer["complement"],
         )
+
+        group, created = Group.objects.get_or_create(name="Clientes")
+        user.groups.add(group)
 
         customer = Customer.objects.create(
             user=user,
@@ -121,10 +125,4 @@ class SubscriptionCancel(LoginRequiredMixin, View):
         else:
             messages.error(request, "Nenhuma assinatura ativa encontrada")
 
-        return redirect("home")
-
-
-class SubscriptionRenew(LoginRequiredMixin, View):
-
-    def post(self, request):
         return redirect("home")

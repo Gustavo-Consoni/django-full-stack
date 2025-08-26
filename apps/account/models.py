@@ -37,11 +37,11 @@ class User(AbstractUser):
     email          = models.EmailField(unique=True)
     username       = models.CharField(max_length=50, null=True, blank=True)
     phone_number   = models.CharField(max_length=15, null=True, blank=True, verbose_name="Telefone")
-    date_birth     = models.DateField(null=True, blank=True, verbose_name="Data de Nascimento")
+    birth_date     = models.DateField(null=True, blank=True, verbose_name="Data de Nascimento")
     postal_code    = models.CharField(max_length=8, null=True, blank=True, verbose_name="Cep")
     state          = models.CharField(max_length=2, null=True, blank=True, verbose_name="Estado")
     city           = models.CharField(max_length=100, null=True, blank=True, verbose_name="Cidade")
-    district       = models.CharField(max_length=100, null=True, blank=True, verbose_name="Bairro")
+    neighborhood   = models.CharField(max_length=100, null=True, blank=True, verbose_name="Bairro")
     street         = models.CharField(max_length=100, null=True, blank=True, verbose_name="Rua")
     address_number = models.CharField(max_length=10, null=True, blank=True, verbose_name="Número")
     complement     = models.CharField(max_length=100, null=True, blank=True, verbose_name="Complemento")
@@ -52,3 +52,13 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    def clean(self):
+        super().clean()
+        if self.username == "":
+            self.username = None
+
+    def save(self, *args, **kwargs):
+        if self.username == "":
+            self.username = None
+        super().save(*args, **kwargs)

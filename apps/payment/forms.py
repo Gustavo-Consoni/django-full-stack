@@ -9,7 +9,7 @@ class SubscriptionCheckoutForm(forms.Form):
     full_name      = forms.CharField(max_length=100)
     email          = forms.EmailField(max_length=100)
     phone_number   = forms.CharField(max_length=15)
-    date_birth     = forms.DateField(input_formats=["%d/%m/%Y"])
+    birth_date     = forms.DateField(input_formats=["%d/%m/%Y"])
     password       = forms.CharField(min_length=8, max_length=32)
 
     postal_code    = forms.CharField(max_length=9)
@@ -19,7 +19,7 @@ class SubscriptionCheckoutForm(forms.Form):
     holder_name    = forms.CharField(max_length=100)
     number         = forms.CharField(max_length=19)
     expiry_date    = forms.CharField(max_length=5)
-    ccv            = forms.CharField(max_length=4)
+    ccv            = forms.CharField(max_length=3)
 
     def clean_plan(self):
         try:
@@ -44,18 +44,28 @@ class SubscriptionCheckoutForm(forms.Form):
         return phone_number
 
     def clean_postal_code(self):
-        return re.sub(r"\D", "", self.cleaned_data["postal_code"])
+        postal_code = re.sub(r"\D", "", self.cleaned_data["postal_code"])
+
+        if len(postal_code) != 8:
+            raise forms.ValidationError("Número de CEP inválido")
+
+        return postal_code
 
     def clean_cpf_cnpj(self):
         cpf_cnpj = re.sub(r"\D", "", self.cleaned_data["cpf_cnpj"])
 
         if len(cpf_cnpj) != 11:
-            raise forms.ValidationError("Número de cpf inválido")
+            raise forms.ValidationError("Número de CPF inválido")
 
         return cpf_cnpj
 
     def clean_number(self):
-        return re.sub(r"\D", "", self.cleaned_data["number"])
+        number = re.sub(r"\D", "", self.cleaned_data["number"])
+
+        if len(number) != 16:
+            raise forms.ValidationError("Número do cartão inválido")
+
+        return number
 
     def clean_expiry_date(self):
         try:

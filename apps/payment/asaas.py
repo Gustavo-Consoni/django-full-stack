@@ -64,7 +64,7 @@ class AsaasCustomer(AsaasBase):
             },
         )
 
-    def update_customer(self, customer_id, name, cpf_cnpj, email=None, mobile_phone=None, postal_code=None, address_number=None):
+    def update_customer(self, customer_id, name=None, cpf_cnpj=None, email=None, mobile_phone=None, postal_code=None, address_number=None):
         """ https://docs.asaas.com/reference/atualizar-cliente-existente """
         body = {
             "name": name,
@@ -99,13 +99,13 @@ class AsaasSubscription(AsaasBase):
             method="GET",
         )
 
-    def create_subscription(self, customer_id, billingType, cycle, value, next_due_date, description, credit_card, credit_card_holder_info):
+    def create_subscription(self, payment_id, billingType, cycle, value, next_due_date, description, credit_card, credit_card_holder_info):
         """ https://docs.asaas.com/reference/criar-assinatura-com-cartao-de-credito """
         return self.send_request(
             path="subscriptions",
             method="POST",
             body={
-                "customer": customer_id,
+                "customer": payment_id,
                 "billingType": billingType,
                 "cycle": cycle,
                 "value": value,
@@ -116,7 +116,7 @@ class AsaasSubscription(AsaasBase):
             },
         )
 
-    def update_subscription(self, subscription_id, status=None, value=None, nextDueDate=None, cycle=None, description=None):
+    def update_subscription(self, subscription_id, status=None, cycle=None, value=None, nextDueDate=None, description=None, updatePendingPayments=None):
         """ https://docs.asaas.com/reference/atualizar-assinatura-existente """
         body = {
             "status": status,
@@ -124,6 +124,7 @@ class AsaasSubscription(AsaasBase):
             "value": value,
             "nextDueDate": nextDueDate,
             "description": description,
+            "updatePendingPayments": updatePendingPayments,
         }
         body = {key: value for key, value in body.items() if value not in [None, "", [], {}]}
 
@@ -143,7 +144,7 @@ class AsaasSubscription(AsaasBase):
 
 class AsaasPayment(AsaasBase):
 
-    def get_payments(self):
+    def get_payment(self):
         """ https://docs.asaas.com/reference/listar-cobrancas """
         return self.send_request(
             path=f"payments",
