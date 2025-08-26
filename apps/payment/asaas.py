@@ -99,13 +99,13 @@ class AsaasSubscription(AsaasBase):
             method="GET",
         )
 
-    def create_subscription(self, payment_id, billingType, cycle, value, next_due_date, description, credit_card, credit_card_holder_info):
+    def create_subscription(self, customer_id, billingType, cycle, value, next_due_date, description, credit_card, credit_card_holder_info):
         """ https://docs.asaas.com/reference/criar-assinatura-com-cartao-de-credito """
         return self.send_request(
             path="subscriptions",
             method="POST",
             body={
-                "customer": payment_id,
+                "customer": customer_id,
                 "billingType": billingType,
                 "cycle": cycle,
                 "value": value,
