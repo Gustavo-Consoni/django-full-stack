@@ -86,6 +86,8 @@ if config("POSTGRES_HOST"):
             "NAME": config("POSTGRES_DB"),
             "USER": config("POSTGRES_USER"),
             "PASSWORD": config("POSTGRES_PASSWORD"),
+            "CONN_MAX_AGE": 120,
+            "CONN_HEALTH_CHECKS": True,
         }
     }
 else:
