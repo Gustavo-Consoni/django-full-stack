@@ -1,13 +1,12 @@
 var staticCacheName = "django-pwa-v" + new Date().getTime()
 var filesToCache = [
-    "/offline/",
+    "/offline",
 ]
 
 self.addEventListener("install", event => {
-    this.skipWaiting()
+    self.skipWaiting()
     event.waitUntil(
-        caches.open(staticCacheName)
-        .then(cache => {
+        caches.open(staticCacheName).then(cache => {
             return cache.addAll(filesToCache)
         })
     )
@@ -18,8 +17,8 @@ self.addEventListener("activate", event => {
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames
-                .filter(cacheName => (cacheName.startsWith("django-pwa-")))
-                .filter(cacheName => (cacheName !== staticCacheName))
+                .filter(cacheName => cacheName.startsWith("django-pwa-"))
+                .filter(cacheName => cacheName !== staticCacheName)
                 .map(cacheName => caches.delete(cacheName))
             )
         })
@@ -33,7 +32,7 @@ self.addEventListener("fetch", event => {
             return response || fetch(event.request)
         })
         .catch(() => {
-            return caches.match("/offline/")
+            return caches.match("/offline")
         })
     )
 })

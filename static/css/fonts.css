@@ -1,0 +1,111 @@
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins Thin"), local("Poppins-Thin"), url("/static/fonts/poppins/Poppins-Thin.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins ExtraLight"), local("Poppins-ExtraLight"), url("/static/fonts/poppins/Poppins-ExtraLight.woff2") format("woff2");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins Light"), local("Poppins-Light"), url("/static/fonts/poppins/Poppins-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins Regular"), local("Poppins-Regular"), url("/static/fonts/poppins/Poppins-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins Medium"), local("Poppins-Medium"), url("/static/fonts/poppins/Poppins-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins SemiBold"), local("Poppins-SemiBold"), url("/static/fonts/poppins/Poppins-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins Bold"), local("Poppins-Bold"), url("/static/fonts/poppins/Poppins-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins ExtraBold"), local("Poppins-ExtraBold"), url("/static/fonts/poppins/Poppins-ExtraBold.woff2") format("woff2");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins Black"), local("Poppins-Black"), url("/static/fonts/poppins/Poppins-Black.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Teko";
+    src: local("Teko Light"), local("Teko-Light"), url("/static/fonts/teko/Teko-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Teko";
+    src: local("Teko Regular"), local("Teko-Regular"), url("/static/fonts/teko/Teko-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Teko";
+    src: local("Teko Medium"), local("Teko-Medium"), url("/static/fonts/teko/Teko-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Teko";
+    src: local("Teko SemiBold"), local("Teko-SemiBold"), url("/static/fonts/teko/Teko-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Teko";
+    src: local("Teko Bold"), local("Teko-Bold"), url("/static/fonts/teko/Teko-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}

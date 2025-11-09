@@ -33,9 +33,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "pwa",
-    "django_cotton",
     "rest_framework",
+    "django_cotton",
     "django_tailwind_cli",
 
     "core",
@@ -166,15 +165,6 @@ SESSION_COOKIE_AGE = 60 * 60 * 24
 LOGIN_URL = "/entrar"
 
 
-# HTTPS / SSL
-
-if not DEBUG:
-	CSRF_COOKIE_SECURE = True
-	SECURE_SSL_REDIRECT = True
-	SESSION_COOKIE_SECURE = True
-	SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
-
 # Email
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" if DEBUG else "django.core.mail.backends.smtp.EmailBackend"
@@ -191,14 +181,16 @@ EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
 
 EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
 
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# Asaas
 
-ASAAS_API_KEY = config("ASAAS_API_KEY")
+# HTTPS / SSL
 
-ASAAS_ACCESS_TOKEN = config("ASAAS_ACCESS_TOKEN")
-
-ASAAS_BASE_URL = config("ASAAS_BASE_URL")
+if not DEBUG:
+	CSRF_COOKIE_SECURE = True
+	SECURE_SSL_REDIRECT = True
+	SESSION_COOKIE_SECURE = True
+	SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # Django Cotton
@@ -214,79 +206,10 @@ if DEBUG:
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 
-# Django PWA
+# Asaas
 
-PWA_APP_DEBUG_MODE = True if DEBUG else False
+ASAAS_API_KEY = config("ASAAS_API_KEY")
 
-PWA_SERVICE_WORKER_PATH = BASE_DIR / "templates/serviceworker.js"
+ASAAS_ACCESS_TOKEN = config("ASAAS_ACCESS_TOKEN")
 
-PWA_APP_NAME = ""
-
-PWA_APP_DESCRIPTION = ""
-
-PWA_APP_THEME_COLOR = ""
-
-PWA_APP_BACKGROUND_COLOR = ""
-
-PWA_APP_STATUS_BAR_COLOR = ""
-
-PWA_APP_DISPLAY = "standalone"
-
-PWA_APP_ORIENTATION = "portrait"
-
-PWA_APP_DIR = "ltr"
-
-PWA_APP_LANG = "pt-BR"
-
-PWA_APP_START_URL = "/entrar"
-
-PWA_APP_ICONS = [
-    {
-        "src": "",
-        "sizes": "192x192",
-        "type": "image/png",
-    },
-    {
-        "src": "",
-        "sizes": "512x512",
-        "type": "image/png",
-    },
-]
-
-PWA_APP_ICONS_APPLE = [
-    {
-        "src": "",
-        "sizes": "192x192",
-        "type": "image/png",
-    },
-    {
-        "src": "",
-        "sizes": "512x512",
-        "type": "image/png",
-    },
-]
-
-PWA_APP_SPLASH_SCREEN = [
-    {
-        "src": "",
-        "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)",
-    },
-]
-
-PWA_APP_SCREENSHOTS = [
-    {
-      "src": "",
-      "sizes": "1080x1920",
-      "type": "image/png",
-    },
-    {
-      "src": "",
-      "sizes": "1080x1920",
-      "type": "image/png",
-    },
-    {
-      "src": "",
-      "sizes": "1080x1920",
-      "type": "image/png",
-    },
-]
+ASAAS_BASE_URL = config("ASAAS_BASE_URL")

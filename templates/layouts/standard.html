@@ -1,26 +1,47 @@
 {% load static %}
-{% load pwa %}
 {% load tailwind_cli %}
+
+
 <!doctype html>
 <html class="antialiased scroll-smooth" lang="pt-BR">
     <head>
-        {% progressive_web_app_meta %}
-        {% tailwind_css %}
         <title>SpacePro</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+        <meta name="description" content="Plataforma de treino para resultados consistentes">
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        {% tailwind_css %}
+        <!-- OG -->
         <meta property="og:type" content="website">
-        <meta property="og:title" content="">
+        <meta property="og:title" content="SpacePro">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
-        <meta property="og:url" content="">
-        <meta property="og:image" content="">
-        <meta property="og:description" content="">
-        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-        <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+        <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}">
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}">
+        <meta property="og:description" content="Plataforma de treino para resultados consistentes">
+        <!-- PWA Android -->
+        <meta name="application-name" content="SpacePro">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#212121">
+        <link rel="manifest" href="{% url 'manifest' %}">
+        <!-- PWA IOS -->
+        <meta name="apple-mobile-web-app-title" content="SpacePro">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#212121">
+        <link rel="apple-touch-icon" href="{% static 'images/logo/descolada-com-fundo-192x192.png' %}" sizes="192x192">
+        <link rel="apple-touch-icon" href="{% static 'images/logo/descolada-sem-fundo-512x512.png' %}" sizes="512x512">
         {% block "head" %}{% endblock %}
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15/dist/cdn.min.js"></script>
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("/serviceworker.js", {
+                        scope: "/",
+                    })
+                })
+            }
+        </script>
         <style>
             * {
                 font-family: "Poppins", sans-serif;
@@ -43,8 +64,8 @@
             }
         </style>
     </head>
-    <body x-data="alpine" id="page">
-        <div class="bg-[length:100%_100vh] bg-gradient-to-b from-[#101010] via-[#212121] to-[#101010]" id="content">
+    <body x-data="alpine">
+        <div class="bg-linear-to-b from-[#101010] via-[#212121] to-[#101010] min-h-svh bg-size-[100%_100vh]">
             <div class="space-y-12 mx-auto max-xl:px-6 py-6 max-w-7xl min-h-svh">
                 <c-navbar></c-navbar>
                 {% block "body" %}{% endblock %}

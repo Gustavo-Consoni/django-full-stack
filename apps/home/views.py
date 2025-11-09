@@ -18,3 +18,21 @@ class PrivacyPolicy(View):
 
     def get(self, request):
         return render(request, "pages/home/privacy_policy.html")
+
+
+class ServiceWorker(View):
+
+    def get(self, request):
+        return render(request, "serviceworker.js", content_type="application/javascript")
+
+
+class Manifest(View):
+
+    def get(self, request):
+        return render(request, "manifest.json", content_type="application/json")
+
+
+class Offline(View):
+
+    def get(self, request):
+        return render(request, "offline.html")

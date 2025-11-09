@@ -98,13 +98,13 @@ class SubscriptionCheckout(View):
             next_due=asaas_subscription["nextDueDate"],
         )
 
-        return redirect("subscription_success")
+        return redirect("subscription_completed")
 
 
-class SubscriptionSuccess(View):
+class SubscriptionCompleted(View):
 
     def get(self, request):
-        return render(request, "pages/payment/subscription_success.html")
+        return render(request, "pages/payment/subscription_completed.html")
 
 
 class SubscriptionCancel(LoginRequiredMixin, View):

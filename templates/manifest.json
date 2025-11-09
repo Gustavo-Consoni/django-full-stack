@@ -1,22 +1,55 @@
-{% load pwa %}
 {
-    "id": "",
-    "name": {{ PWA_APP_NAME|js }},
-    "short_name": {{ PWA_APP_NAME|js }},
-    "description": {{ PWA_APP_DESCRIPTION|js }},
-    "scope": {{ PWA_APP_SCOPE|js }},
-    "start_url": {{ PWA_APP_START_URL|js }},
-    "dir": {{ PWA_APP_DIR|js }},
-    "lang": {{ PWA_APP_LANG|js }},
-    "display": {{ PWA_APP_DISPLAY|js }},
-    "orientation": {{ PWA_APP_ORIENTATION|js }},
-    "theme_color": {{ PWA_APP_THEME_COLOR|js }},
-    "status_bar": {{ PWA_APP_STATUS_BAR_COLOR|js }},
-    "background_color": {{ PWA_APP_BACKGROUND_COLOR|js }},
-    "icons": {{ PWA_APP_ICONS|js }},
-    "screenshots": {{ PWA_APP_SCREENSHOTS|js }},
-    "shortcuts": {{ PWA_APP_SHORTCUTS|js }},
-    "categories": [],
-    "launch_handler": {"client_mode": "focus-existing"},
-    "prefer_related_applications": false
+    "id": "spacepro",
+    "name": "SpacePro",
+    "short_name": "SpacePro",
+    "description": "Plataforma de treino para resultados consistentes",
+    "start_url": "/entrar",
+    "scope": "/",
+    "dir": "ltr",
+    "lang": "pt-BR",
+    "theme_color": "#212121",
+    "background_color": "#212121",
+    "orientation": "portrait",
+    "display": "standalone",
+    "display_override": [
+        "standalone",
+        "fullscreen"
+    ],
+    "categories": [
+        "fitness",
+        "health"
+    ],
+    "launch_handler": {
+        "client_mode": "focus-existing"
+    },
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "/static/images/logo/descolada-com-fundo-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/images/logo/descolada-sem-fundo-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/static/images/screenshots/login.png",
+            "sizes": "1290x2796",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/images/screenshots/workouts.jpg",
+            "sizes": "1290x2796",
+            "type": "image/jpeg"
+        },
+        {
+            "src": "/static/images/screenshots/workout.jpg",
+            "sizes": "1290x2796",
+            "type": "image/jpeg"
+        }
+    ]
 }

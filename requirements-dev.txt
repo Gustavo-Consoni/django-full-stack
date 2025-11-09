@@ -1,13 +1,14 @@
 Django==5.2.*
-django-tailwind-cli
 djangorestframework
+django-tailwind-cli
 django-debug-toolbar
 django-unfold
 django-cotton
-django-pwa
+
 
 pillow
 python-decouple
+
 
 gunicorn
 psycopg[binary]

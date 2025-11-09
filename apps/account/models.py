@@ -34,13 +34,14 @@ class CustomUserManager(UserManager):
 
 
 class User(AbstractUser):
-    email          = models.EmailField(unique=True)
-    username       = models.CharField(max_length=50, null=True, blank=True)
-    phone_number   = models.CharField(max_length=15, null=True, blank=True, verbose_name="Telefone")
+    email          = models.EmailField(unique=True, verbose_name="Email")
+    username       = models.CharField(max_length=50, null=True, blank=True, verbose_name="Usuário")
+    phone_number   = models.CharField(max_length=20, null=True, blank=True, verbose_name="Telefone")
     birth_date     = models.DateField(null=True, blank=True, verbose_name="Data de Nascimento")
-    postal_code    = models.CharField(max_length=8, null=True, blank=True, verbose_name="Cep")
-    state          = models.CharField(max_length=2, null=True, blank=True, verbose_name="Estado")
-    city           = models.CharField(max_length=100, null=True, blank=True, verbose_name="Cidade")
+
+    postal_code    = models.CharField(max_length=10, null=True, blank=True, verbose_name="Cep")
+    state          = models.CharField(max_length=50, null=True, blank=True, verbose_name="Estado")
+    city           = models.CharField(max_length=50, null=True, blank=True, verbose_name="Cidade")
     neighborhood   = models.CharField(max_length=100, null=True, blank=True, verbose_name="Bairro")
     street         = models.CharField(max_length=100, null=True, blank=True, verbose_name="Rua")
     address_number = models.CharField(max_length=10, null=True, blank=True, verbose_name="Número")

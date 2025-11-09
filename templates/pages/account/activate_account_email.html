@@ -1,12 +1,13 @@
 {% autoescape off %}
 
-    Olá, {{ user.full_name }}! Para finalizar o processo de ativação da sua conta, clique no link abaixo:
+Olá, {{ user.get_full_name|default:user.email }}!
 
-    {{ protocol }}://{{ domain }}{% url "active_account" uidb64=uid token=token %}
+Para finalizar o processo de ativação da sua conta, clique no link abaixo:
 
-    Se clicar no link acima não funcionar, copie e cole a URL no navegador.
+{{ protocol }}://{{ domain }}{% url "active_account" uidb64=uid token=token %}
 
-    Atenciosamente,
-    Equipe Dev.
+Se clicar no link acima não funcionar, copie e cole a URL no navegador
+
+Atenciosamente, Equipe Dindinja
 
 {% endautoescape %}

@@ -5,6 +5,7 @@ services:
     volumes:
       - media_data:/app/media
       - static_data:/app/staticfiles
+      - gunicorn_socket:/run/gunicorn
     env_file:
       - .env
     depends_on:
@@ -19,6 +20,7 @@ services:
     volumes:
       - media_data:/media
       - static_data:/staticfiles
+      - gunicorn_socket:/run/gunicorn
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
@@ -35,6 +37,7 @@ services:
     restart: always
 
 volumes:
-  postgres_data:
-  static_data:
   media_data:
+  static_data:
+  postgres_data:
+  gunicorn_socket:
